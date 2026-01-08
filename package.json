@@ -1,0 +1,39 @@
+{
+  "name": "aws-order-processing-system",
+  "version": "1.0.0",
+  "description": "Full-stack order processing system with AWS services",
+  "scripts": {
+    "install:all": "npm run install:frontend && npm run install:backend && npm run install:lambda",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && ./mvnw clean install",
+    "install:lambda": "cd lambda && npm install",
+    "dev:frontend": "cd frontend && ng serve",
+    "dev:backend": "cd backend && ./mvnw spring-boot:run",
+    "dev:lambda": "cd lambda && npm run dev",
+    "build:all": "npm run build:frontend && npm run build:backend && npm run build:lambda",
+    "build:frontend": "cd frontend && ng build --prod",
+    "build:backend": "cd backend && ./mvnw clean package",
+    "build:lambda": "cd lambda && npm run build",
+    "test:all": "npm run test:frontend && npm run test:backend && npm run test:lambda",
+    "test:frontend": "cd frontend && ng test",
+    "test:backend": "cd backend && ./mvnw test",
+    "test:lambda": "cd lambda && npm test",
+    "deploy:dev": "cd infrastructure && cdk deploy --profile dev",
+    "deploy:prod": "cd infrastructure && cdk deploy --profile prod"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "ecs",
+    "angular",
+    "spring-boot",
+    "order-processing",
+    "microservices"
+  ],
+  "author": "AWS Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "aws-cdk": "^2.100.0"
+  }
+}

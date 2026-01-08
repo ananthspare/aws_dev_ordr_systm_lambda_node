@@ -1,0 +1,55 @@
+spring:
+  config:
+    activate:
+      on-profile: aws
+  
+  datasource:
+    url: jdbc:mysql://${DB_HOST:ecommerce-mysql-db.cwhegcq847i3.us-east-1.rds.amazonaws.com}:${DB_PORT:3306}/${DB_NAME:ecommerce}?useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true&connectTimeout=60000&socketTimeout=60000&autoReconnect=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 300000
+      connection-timeout: 60000
+      leak-detection-threshold: 60000
+      validation-timeout: 5000
+      initialization-fail-timeout: 60000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+
+aws:
+  region: ${AWS_REGION:us-east-1}
+  secrets:
+    db-secret-name: ${DB_SECRET_NAME:ecommerce-db-credentials}
+
+logging:
+  level:
+    com.ecommerce: INFO
+    software.amazon.awssdk: WARN
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    defaults:
+      enabled: true
+  server:
+    port: 8080

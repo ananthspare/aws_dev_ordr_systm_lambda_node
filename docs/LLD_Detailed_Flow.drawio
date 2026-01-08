@@ -1,0 +1,464 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="5.0" etag="xxx" version="22.1.16" type="device">
+  <diagram name="Low-Level-Design" id="lld-diagram">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="AWS Order Processing System - Low Level Design &amp; Data Flow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="20" width="700" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Authentication Flow -->
+        <mxCell id="auth-flow-title" value="1. Authentication Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="80" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user-login" value="User Login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="120" width="100" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="spring-auth" value="Spring Boot&#xa;Auth Service&#xa;/auth/login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="120" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-users" value="RDS&#xa;Users Table&#xa;Credentials" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="120" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt-gen" value="JWT Generation&#xa;RS256 Signing&#xa;Claims + Expiry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="120" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- API Request Flow -->
+        <mxCell id="api-flow-title" value="2. API Request Flow (Product/Cart APIs)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="220" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="angular-app" value="Angular SPA&#xa;HTTP Client&#xa;JWT Header" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api-gateway" value="API Gateway&#xa;/products&#xa;/cart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lambda-authorizer" value="Lambda Authorizer&#xa;JWT Validation&#xa;IAM Policy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="alb-routing" value="Application LB&#xa;Target Groups&#xa;Health Checks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ecs-apis" value="ECS Services&#xa;Spring Boot APIs&#xa;Product/Cart Logic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-data" value="RDS PostgreSQL&#xa;Products Table&#xa;Cart_Items Table" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Order Placement Flow -->
+        <mxCell id="order-flow-title" value="3. Order Placement Flow (Serverless)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="360" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="checkout-ui" value="Checkout Page&#xa;Place Order&#xa;Button Click" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="order-lambda" value="Order Lambda&#xa;POST /checkout&#xa;/place-order" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-write" value="DynamoDB&#xa;Orders Table&#xa;Write Order" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdf-gen" value="PDF Generation&#xa;Invoice Creation&#xa;PDFKit Library" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3-upload" value="S3 Upload&#xa;Invoice Storage&#xa;/invoices/{orderId}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sqs-publish" value="SQS Message&#xa;Order Processing&#xa;Queue Publish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Async Processing Flow -->
+        <mxCell id="async-flow-title" value="4. Asynchronous Order Processing" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="500" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sqs-queue" value="SQS Queue&#xa;Order Messages&#xa;Visibility Timeout" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ecs-processor" value="ECS Processor&#xa;Java Service&#xa;SQS Consumer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-order-items" value="RDS Write&#xa;Order_Items Table&#xa;Transaction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-status" value="DynamoDB Update&#xa;Order Status&#xa;CREATED→PROCESSED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eventbridge-pub" value="EventBridge&#xa;Order Processed&#xa;Event Publish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Shipping Flow -->
+        <mxCell id="shipping-flow-title" value="5. Event-Driven Shipping Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="640" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="event-bus" value="EventBridge Bus&#xa;Order Events&#xa;Event Patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="us-shipping" value="US Shipping&#xa;Lambda Function&#xa;Country: US" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eu-shipping" value="EU Shipping&#xa;Lambda Function&#xa;Country: EU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="india-shipping" value="India Shipping&#xa;Lambda Function&#xa;Country: IN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="shipment-status" value="DynamoDB Update&#xa;Shipment Status&#xa;PROCESSED→SHIPPED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Order Status UI Flow -->
+        <mxCell id="status-flow-title" value="6. Order Status & UI Updates" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="780" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orders-page" value="Orders Page&#xa;Angular Component&#xa;Status Display" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orders-api" value="Orders API&#xa;ECS Service&#xa;GET /orders" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-read" value="DynamoDB Read&#xa;Order Status&#xa;Shipment Status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="invoice-download" value="Invoice Download&#xa;S3 Pre-signed URL&#xa;Secure Access" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Data Models -->
+        <mxCell id="data-models-title" value="7. Data Models & Schema Design" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="80" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- RDS Schema -->
+        <mxCell id="rds-schema" value="RDS PostgreSQL Schema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="120" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="users-table" value="users&#xa;• id (PK)&#xa;• email&#xa;• password_hash&#xa;• created_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="160" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="products-table" value="products&#xa;• id (PK)&#xa;• name&#xa;• price&#xa;• description&#xa;• image_url" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="160" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cart-table" value="cart_items&#xa;• id (PK)&#xa;• user_id (FK)&#xa;• product_id (FK)&#xa;• quantity&#xa;• created_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="260" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="order-items-table" value="order_items&#xa;• id (PK)&#xa;• order_id&#xa;• product_id (FK)&#xa;• quantity&#xa;• price" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="260" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- DynamoDB Schema -->
+        <mxCell id="dynamo-schema" value="DynamoDB Schema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="380" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orders-dynamo" value="Orders Table&#xa;• PK: orderId&#xa;• SK: userId&#xa;• status&#xa;• country&#xa;• total_amount&#xa;• created_at&#xa;• updated_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="420" width="120" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="shipments-dynamo" value="Shipments (GSI)&#xa;• PK: orderId&#xa;• SK: shipmentId&#xa;• status&#xa;• tracking_number&#xa;• carrier&#xa;• estimated_delivery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="420" width="120" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- S3 Structure -->
+        <mxCell id="s3-schema" value="S3 Bucket Structure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="580" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3-structure" value="order-invoices-bucket/&#xa;├── invoices/&#xa;│   ├── 2024/01/&#xa;│   │   └── order-123.pdf&#xa;│   └── 2024/02/&#xa;├── product-images/&#xa;└── backups/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;fontFamily=Courier New;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="620" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Security & Configuration -->
+        <mxCell id="security-title" value="8. Security & Configuration" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="80" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt-flow" value="JWT Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="120" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt-details" value="• Algorithm: RS256&#xa;• Claims: userId, email, roles&#xa;• Expiry: 24 hours&#xa;• Refresh: 7 days&#xa;• Public Key Validation&#xa;• JWKS Endpoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="160" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam-roles" value="IAM Roles & Policies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="280" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam-details" value="• Lambda Execution Role&#xa;• ECS Task Role&#xa;• ECS Execution Role&#xa;• API Gateway Role&#xa;• Least Privilege Access&#xa;• Resource-based Policies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="320" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="secrets-config" value="Secrets & Configuration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="440" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="secrets-details" value="Secrets Manager:&#xa;• DB Credentials&#xa;• JWT Private Key&#xa;• API Keys&#xa;&#xa;Parameter Store:&#xa;• Environment Config&#xa;• Feature Flags&#xa;• Service Endpoints" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="480" width="200" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Monitoring & Observability -->
+        <mxCell id="monitoring-title" value="9. Monitoring & Observability" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="620" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cloudwatch-logs" value="CloudWatch Logs&#xa;• Structured Logging&#xa;• Correlation IDs&#xa;• Log Groups per Service&#xa;• Retention Policies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="660" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="metrics-alarms" value="Metrics & Alarms&#xa;• Error Rates&#xa;• Latency P99&#xa;• DLQ Messages&#xa;• Auto Scaling Triggers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="660" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tracing" value="X-Ray Tracing&#xa;• End-to-End Traces&#xa;• Service Map&#xa;• Performance Analysis&#xa;• Error Root Cause" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="760" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dashboards" value="Dashboards&#xa;• Business Metrics&#xa;• System Health&#xa;• Order Funnel&#xa;• Real-time Alerts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="760" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Flow Arrows -->
+        <!-- Authentication Flow Arrows -->
+        <mxCell id="auth-arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="140" as="sourcePoint" />
+            <mxPoint x="200" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="auth-arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#d6b656;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="150" as="sourcePoint" />
+            <mxPoint x="350" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="auth-arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="150" as="sourcePoint" />
+            <mxPoint x="500" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- API Flow Arrows -->
+        <mxCell id="api-arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="290" as="sourcePoint" />
+            <mxPoint x="200" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="api-arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#9673a6;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="290" as="sourcePoint" />
+            <mxPoint x="350" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="api-arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#d6b656;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="290" as="sourcePoint" />
+            <mxPoint x="500" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="api-arrow4" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="290" as="sourcePoint" />
+            <mxPoint x="650" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="api-arrow5" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Order Flow Arrows -->
+        <mxCell id="order-arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="430" as="sourcePoint" />
+            <mxPoint x="200" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="order-arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="430" as="sourcePoint" />
+            <mxPoint x="350" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="order-arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="430" as="sourcePoint" />
+            <mxPoint x="500" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="order-arrow4" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="430" as="sourcePoint" />
+            <mxPoint x="650" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="order-arrow5" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="430" as="sourcePoint" />
+            <mxPoint x="800" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Async Flow Arrows -->
+        <mxCell id="async-arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="570" as="sourcePoint" />
+            <mxPoint x="200" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="async-arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="570" as="sourcePoint" />
+            <mxPoint x="350" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="async-arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="570" as="sourcePoint" />
+            <mxPoint x="500" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="async-arrow4" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="570" as="sourcePoint" />
+            <mxPoint x="650" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Shipping Flow Arrows -->
+        <mxCell id="shipping-arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#d6b656;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="710" as="sourcePoint" />
+            <mxPoint x="200" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="shipping-arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#d6b656;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="720" as="sourcePoint" />
+            <mxPoint x="350" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="shipping-arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#d6b656;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="730" as="sourcePoint" />
+            <mxPoint x="500" y="730" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="shipping-arrow4" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="710" as="sourcePoint" />
+            <mxPoint x="650" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Status Flow Arrows -->
+        <mxCell id="status-arrow1" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="850" as="sourcePoint" />
+            <mxPoint x="200" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="status-arrow2" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="850" as="sourcePoint" />
+            <mxPoint x="350" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="status-arrow3" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="850" as="sourcePoint" />
+            <mxPoint x="500" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Labels for flows -->
+        <mxCell id="label-auth" value="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="125" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label-api" value="2" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="275" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label-order" value="3" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="415" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label-async" value="4" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="555" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label-shipping" value="5" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="695" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label-status" value="6" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="835" width="20" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,176 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'API Gateway with Lambda Authorizer for E-commerce Application'
+
+Parameters:
+  ALBDNSName:
+    Type: String
+    Description: DNS name of the Application Load Balancer
+    Default: your-alb-dns-name.us-east-1.elb.amazonaws.com
+  
+  JWTSecret:
+    Type: String
+    Description: JWT Secret for token validation
+    NoEcho: true
+    Default: your-jwt-secret-key
+
+Resources:
+  # Lambda Authorizer Function
+  JWTAuthorizerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: jwt-authorizer
+      Runtime: nodejs18.x
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          const jwt = require('jsonwebtoken');
+          const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+          exports.handler = async (event) => {
+              try {
+                  const token = extractToken(event);
+                  if (!token) throw new Error('No token provided');
+                  const decoded = jwt.verify(token, JWT_SECRET);
+                  return generatePolicy(decoded.sub, 'Allow', event.methodArn, {
+                      customerId: decoded.customerId,
+                      email: decoded.email,
+                      name: decoded.name
+                  });
+              } catch (error) {
+                  return generatePolicy('user', 'Deny', event.methodArn);
+              }
+          };
+          function extractToken(event) {
+              const authHeader = event.headers?.Authorization || event.headers?.authorization;
+              if (authHeader && authHeader.startsWith('Bearer ')) return authHeader.substring(7);
+              return event.queryStringParameters?.token || null;
+          }
+          function generatePolicy(principalId, effect, resource, context = {}) {
+              const policy = {
+                  principalId,
+                  policyDocument: {
+                      Version: '2012-10-17',
+                      Statement: [{ Action: 'execute-api:Invoke', Effect: effect, Resource: resource }]
+                  }
+              };
+              if (Object.keys(context).length > 0) policy.context = context;
+              return policy;
+          }
+      Environment:
+        Variables:
+          JWT_SECRET: !Ref JWTSecret
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Timeout: 30
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  EcommerceAPI:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: ecommerce-api
+      Description: E-commerce API Gateway
+      EndpointConfiguration:
+        Types: [REGIONAL]
+
+  JWTAuthorizer:
+    Type: AWS::ApiGateway::Authorizer
+    Properties:
+      Name: jwt-authorizer
+      Type: TOKEN
+      RestApiId: !Ref EcommerceAPI
+      AuthorizerUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${JWTAuthorizerFunction.Arn}/invocations'
+      AuthorizerCredentials: !GetAtt ApiGatewayAuthorizerRole.Arn
+      IdentitySource: method.request.header.Authorization
+      AuthorizerResultTtlInSeconds: 300
+
+  ApiGatewayAuthorizerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: InvokeLambdaPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: lambda:InvokeFunction
+                Resource: !GetAtt JWTAuthorizerFunction.Arn
+
+  ProxyResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref EcommerceAPI
+      ParentId: !GetAtt EcommerceAPI.RootResourceId
+      PathPart: '{proxy+}'
+
+  ProxyMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref EcommerceAPI
+      ResourceId: !Ref ProxyResource
+      HttpMethod: ANY
+      AuthorizationType: CUSTOM
+      AuthorizerId: !Ref JWTAuthorizer
+      Integration:
+        Type: HTTP_PROXY
+        IntegrationHttpMethod: ANY
+        Uri: !Sub 'http://${ALBDNSName}/api/v1/{proxy}'
+        RequestParameters:
+          integration.request.path.proxy: method.request.path.proxy
+          integration.request.header.X-Customer-Id: context.authorizer.customerId
+
+  AuthResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref EcommerceAPI
+      ParentId: !GetAtt EcommerceAPI.RootResourceId
+      PathPart: 'auth'
+
+  AuthProxyResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref EcommerceAPI
+      ParentId: !Ref AuthResource
+      PathPart: '{proxy+}'
+
+  AuthProxyMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref EcommerceAPI
+      ResourceId: !Ref AuthProxyResource
+      HttpMethod: ANY
+      AuthorizationType: NONE
+      Integration:
+        Type: HTTP_PROXY
+        IntegrationHttpMethod: ANY
+        Uri: !Sub 'http://${ALBDNSName}/api/v1/auth/{proxy}'
+        RequestParameters:
+          integration.request.path.proxy: method.request.path.proxy
+
+  ApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn: [ProxyMethod, AuthProxyMethod]
+    Properties:
+      RestApiId: !Ref EcommerceAPI
+      StageName: prod
+
+Outputs:
+  ApiGatewayUrl:
+    Description: API Gateway URL
+    Value: !Sub 'https://${EcommerceAPI}.execute-api.${AWS::Region}.amazonaws.com/prod'

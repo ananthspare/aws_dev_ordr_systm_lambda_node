@@ -1,0 +1,15 @@
+{
+  "name": "jwt-authorizer",
+  "version": "1.0.0",
+  "description": "JWT Lambda Authorizer for API Gateway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  },
+  "keywords": ["lambda", "authorizer", "jwt", "api-gateway"],
+  "author": "",
+  "license": "MIT"
+}

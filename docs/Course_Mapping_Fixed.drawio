@@ -1,0 +1,303 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="5.0" etag="xxx" version="22.1.16" type="device">
+  <diagram name="Course-Mapping-Fixed" id="course-mapping-fixed">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="title" value="AWS Developer Bootcamp - Complete Course Mapping (79 Lectures)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="20" width="800" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section1-box" value="Section 1: Course Introduction and Architecture Context" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="80" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section1-lectures" value="Lecture 1: Welcome to the Course\nLecture 2: What We Are Building\nLecture 3: Functional and Non-Functional Requirements\nLecture 4: High-Level Architecture Walkthrough\nLecture 5: Frontend, Backend and Event-Driven Flow\nLecture 6: Lambda vs ECS - Choosing Compute\nLecture 7: Data Strategy: RDS vs DynamoDB vs S3\nLecture 8: Security, Secrets and Configuration\nLecture 9: Course Roadmap and Learning Approach" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="130" width="300" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section2-box" value="Section 2: Frontend UI Architecture (Angular - Overview)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section2-lectures" value="Lecture 10: Angular Application Architecture\nLecture 11: UI Components and User Flow\nLecture 12: API Communication from UI\nLecture 13: JWT Handling in UI\nLecture 14: Error Handling and Session Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="400" y="130" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section3-box" value="Section 3: Authentication and Authorization with API Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="80" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section3-lectures" value="Lecture 15: Authentication vs Authorization\nLecture 16: User Registration and Login APIs (ECS)\nLecture 17: JWT Generation Strategy\nLecture 18: JWT Storage and Flow Across Requests\nLecture 19: API Gateway Lambda Authorizer Architecture\nLecture 20: JWT Validation in Lambda Authorizer\nLecture 21: Securing API Gateway Routes\nLecture 22: Passing Auth Context to ECS and Lambda\nLecture 23: Authorization Failure Scenarios" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="750" y="130" width="300" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section4-box" value="Section 4: Relational Data with Amazon RDS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="80" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section4-lectures" value="Lecture 24: Why Relational Data Is Required\nLecture 25: Amazon RDS Architecture Overview\nLecture 26: Database Schema Overview\nLecture 27: Connecting ECS Services to RDS\nLecture 28: Secrets Manager Integration\nLecture 29: Transaction Handling in Backend APIs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="130" width="300" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section5-box" value="Section 5: Backend APIs on ECS (Docker + ECR)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="80" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section5-lectures" value="Lecture 30: Backend API Responsibilities\nLecture 31: Why ECS and Fargate Are Used\nLecture 32: Docker Image Strategy\nLecture 33: Amazon ECR Overview\nLecture 34: ECS Task Definitions and Roles\nLecture 35: ECS Service Deployment Model\nLecture 36: JWT Context Usage Inside ECS APIs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="130" width="300" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section6-box" value="Section 6: Application Load Balancer and API Gateway Integration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="320" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section6-lectures" value="Lecture 37: Why ALB Is Required for ECS\nLecture 38: ALB and Target Group Configuration\nLecture 39: API Gateway to ALB Integration\nLecture 40: End-to-End API Request Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="370" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section7-box" value="Section 7: Order Placement with AWS Lambda" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="320" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section7-lectures" value="Lecture 41: Why Lambda for Order Placement\nLecture 42: Checkout API Flow\nLecture 43: Reading User Context in Lambda\nLecture 44: Writing Order Data to DynamoDB\nLecture 45: Generating Invoice PDF in Lambda\nLecture 46: Uploading Order Invoice to S3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="400" y="370" width="300" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section8-box" value="Section 8: Order Lifecycle with DynamoDB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="320" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section8-lectures" value="Lecture 47: DynamoDB Table Design for Orders\nLecture 48: Writing Orders from Lambda\nLecture 49: Updating Order Status Across Services\nLecture 50: Querying Orders for UI Display" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="750" y="370" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section9-box" value="Section 9: Asynchronous Processing with Amazon SQS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="320" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section9-lectures" value="Lecture 51: Why Asynchronous Processing\nLecture 52: Amazon SQS Architecture Overview\nLecture 53: Order Messages Published to SQS\nLecture 54: Dead Letter Queue Strategy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="370" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section10-box" value="Section 10: Order Processing Service on ECS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="320" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section10-lectures" value="Lecture 55: Order Processing Responsibilities\nLecture 56: Consuming SQS Messages in ECS\nLecture 57: Writing Transactional Data to RDS\nLecture 58: Updating Order Status in DynamoDB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="370" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section11-box" value="Section 11: Event-Driven Shipping with EventBridge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="500" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section11-lectures" value="Lecture 59: EventBridge Concepts and Event Bus\nLecture 60: Publishing Order Events\nLecture 61: Country-Based Event Routing Rules\nLecture 62: Country-Specific Shipping Lambdas\nLecture 63: Updating Shipment Status in DynamoDB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="550" width="300" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section12-box" value="Section 12: Orders UI - Status Tracking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="500" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section12-lectures" value="Lecture 64: Orders Page Data Flow\nLecture 65: Displaying Order and Shipment Status\nLecture 66: Invoice Download Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="400" y="550" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section13-box" value="Section 13: Configuration, Secrets and Security Hardening" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="500" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section13-lectures" value="Lecture 67: Parameter Store Usage\nLecture 68: Secrets Manager Usage\nLecture 69: IAM Roles and Least Privilege" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="750" y="550" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section14-box" value="Section 14: Monitoring, Logging and Production Readiness" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="500" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section14-lectures" value="Lecture 70: CloudWatch Logging Strategy\nLecture 71: Metrics and Alarms\nLecture 72: Failure Scenarios and Recovery\nLecture 73: Cost and Performance Optimization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="550" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section15-box" value="Section 15: Final Review and Next Steps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="500" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="section15-lectures" value="Lecture 74: Final Architecture Review\nLecture 75: Security Review\nLecture 76: Data Store Comparison Recap\nLecture 77: Lambda vs ECS Recap\nLecture 78: Mapping to AWS Certifications\nLecture 79: What to Build Next" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="550" width="300" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="services-title" value="AWS Services Covered" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="700" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api-gateway-service" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#FF4F8B;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="50" y="750" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="apigw-label" value="API Gateway\nREST APIs\nLambda Authorizer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="30" y="820" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lambda-service" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="150" y="750" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lambda-label" value="Lambda\nServerless Functions\nOrder Processing" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="130" y="820" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="nodejs-icon" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#339933;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.node_js;" vertex="1" parent="1">
+          <mxGeometry x="170" y="770" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ecs-service" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;" vertex="1" parent="1">
+          <mxGeometry x="250" y="750" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="spring-icon" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#6DB33F;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.spring_boot;" vertex="1" parent="1">
+          <mxGeometry x="270" y="770" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ecs-label" value="ECS Fargate\nContainer Service\nBackend APIs" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="230" y="820" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-service" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" vertex="1" parent="1">
+          <mxGeometry x="350" y="750" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="postgresql-icon" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#336791;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.postgresql;" vertex="1" parent="1">
+          <mxGeometry x="370" y="770" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-label" value="RDS PostgreSQL\nRelational Database\nACID Transactions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="330" y="820" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamodb-service" value="DynamoDB\nNoSQL Database\nOrder Lifecycle" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
+          <mxGeometry x="450" y="750" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3-service" value="S3\nObject Storage\nInvoice Storage" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#60A337;gradientDirection=north;fillColor=#277116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="50" y="850" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sqs-service" value="SQS\nMessage Queue\nAsync Processing" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#FF4F8B;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" vertex="1" parent="1">
+          <mxGeometry x="150" y="850" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eventbridge-service" value="EventBridge\nEvent Bus\nEvent Routing" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#FF4F8B;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" vertex="1" parent="1">
+          <mxGeometry x="250" y="850" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cloudwatch-service" value="CloudWatch\nMonitoring\nLogs and Metrics" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F34482;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
+          <mxGeometry x="350" y="850" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="learning-path-title" value="Learning Path and Prerequisites" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="700" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="beginner-path" value="Beginner Level (Sections 1-4)\nCourse Introduction and Architecture\nFrontend Overview (Angular)\nAuthentication with JWT\nRelational Data with RDS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="750" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="intermediate-path" value="Intermediate Level (Sections 5-10)\nBackend APIs on ECS\nLoad Balancing with ALB\nServerless with Lambda\nNoSQL with DynamoDB\nAsync Processing with SQS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="850" width="300" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="advanced-path" value="Advanced Level (Sections 11-15)\nEvent-Driven Architecture\nUI Integration and Status Tracking\nSecurity and Configuration Management\nProduction Monitoring\nArchitecture Review and Best Practices" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="970" width="300" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="concepts-title" value="Key Learning Concepts" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="700" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="architecture-concepts" value="Architecture Patterns\nMicroservices vs Monolith\nServerless vs Container Architecture\nSynchronous vs Asynchronous Processing\nEvent-Driven Design Patterns\nAPI Gateway Patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="950" y="750" width="250" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="data-concepts" value="Data Strategy\nNoSQL vs Relational Database Design\nACID vs BASE Consistency Models\nData Partitioning Strategies\nCaching Patterns\nData Lifecycle Management" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="950" y="870" width="250" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="security-concepts" value="Security and Operations\nJWT Authentication and Authorization\nIAM Roles and Least Privilege\nSecrets Management Best Practices\nMonitoring and Observability\nProduction Deployment Strategies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="950" y="990" width="250" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tech-stack-title" value="Technology Stack" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="700" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="frontend-tech" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#E53E3E;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.angular;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="750" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="typescript-icon" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#3178C6;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.typescript;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="750" width="30" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="frontend-text" value="Frontend\nAngular 16+\nTypeScript\nAngular Material\nRxJS\nJWT Handling" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="800" width="120" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="backend-tech" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#6DB33F;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.spring_boot;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="750" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="java-icon" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#ED8B00;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.java;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="750" width="30" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="backend-text" value="Backend\nJava 17\nSpring Boot 3\nSpring Security\nJPA/Hibernate\nMaven" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="800" width="120" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="serverless-tech" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#339933;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.node_js;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="750" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="aws-sdk-icon" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sdk;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="750" width="30" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="serverless-text" value="Serverless\nNode.js 18+\nTypeScript\nAWS SDK v3\nPDFKit\nJest Testing" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="800" width="120" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="database-tech" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#336791;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.postgresql;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="870" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-icon" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="870" width="30" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="database-text" value="Databases\nPostgreSQL 15\nDynamoDB\nRedis (Caching)\nConnection Pooling\nMigration Scripts" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="920" width="120" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="devops-tech" value="DevOps\nDocker\nAWS CDK\nGitHub Actions\nCloudFormation\nTerraform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="870" width="120" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="monitoring-tech" value="Monitoring\nCloudWatch\nX-Ray Tracing\nCustom Metrics\nLog Aggregation\nAlerting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="870" width="120" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="stats-title" value="Course Statistics" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="1000" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="course-stats" value="Course Metrics\nTotal Lectures: 79\nTotal Duration: 15+ Hours\nHands-on Labs: 50+ Exercises\nAWS Services: 12+ Services\nCode Repositories: 4 (Frontend, Backend, Lambda, Infrastructure)\nReal-world Project: Complete Order Processing System\nCertification Mapping: AWS Developer Associate\nPrerequisites: Basic programming, AWS Account" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="1040" width="400" height="140" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

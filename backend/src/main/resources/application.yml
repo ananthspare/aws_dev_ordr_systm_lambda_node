@@ -1,0 +1,84 @@
+spring:
+  application:
+    name: ecommerce-backend
+  
+  datasource:
+    url: jdbc:mysql://ecommerce-mysql-db.cwhegcq847i3.us-east-1.rds.amazonaws.com:3306/ecommerce?useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  level:
+    com.ecommerce: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{traceId}] %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{traceId}] %logger{36} - %msg%n"
+  file:
+    name: logs/ecommerce-backend.log
+    max-size: 10MB
+    max-history: 30
+
+aws:
+  region: ${AWS_REGION:us-east-1}
+  profile: ${AWS_PROFILE:default}
+  secrets:
+    db-secret-name: ${DB_SECRET_NAME:ecommerce-db-credentials}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    com.ecommerce: DEBUG
+    org.springframework.web: TRACE
+    org.springframework.security: TRACE
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  level:
+    com.ecommerce: INFO
+    org.springframework.web: WARN
+    org.springframework.security: WARN

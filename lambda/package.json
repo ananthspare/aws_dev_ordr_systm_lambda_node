@@ -1,0 +1,39 @@
+{
+  "name": "order-processing-lambda",
+  "version": "1.0.0",
+  "description": "Lambda functions for order processing",
+  "main": "index.js",
+  "scripts": {
+    "dev": "serverless offline",
+    "build": "tsc",
+    "test": "jest",
+    "deploy:dev": "serverless deploy --stage dev",
+    "deploy:prod": "serverless deploy --stage prod",
+    "logs": "serverless logs -f placeOrder -t"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1400.0",
+    "@aws-sdk/client-dynamodb": "^3.350.0",
+    "@aws-sdk/client-s3": "^3.350.0",
+    "@aws-sdk/client-sqs": "^3.350.0",
+    "@aws-sdk/client-eventbridge": "^3.350.0",
+    "jsonwebtoken": "^9.0.0",
+    "jwks-client": "^3.0.0",
+    "uuid": "^9.0.0",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.0",
+    "@types/node": "^18.0.0",
+    "@types/uuid": "^9.0.0",
+    "@types/jsonwebtoken": "^9.0.0",
+    "serverless": "^3.30.0",
+    "serverless-offline": "^12.0.0",
+    "serverless-webpack": "^5.11.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.80.0",
+    "ts-loader": "^9.4.0",
+    "jest": "^29.5.0",
+    "@types/jest": "^29.5.0"
+  }
+}

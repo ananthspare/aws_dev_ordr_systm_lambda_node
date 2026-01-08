@@ -1,0 +1,247 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="5.0" etag="xxx" version="22.1.16" type="device">
+  <diagram name="Low-Level-Design" id="lld-diagram">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="title" value="AWS Order Processing System - Low Level Design and Data Flow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="20" width="700" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="auth-flow-title" value="1. Authentication Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="80" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user-login" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" vertex="1" parent="1">
+          <mxGeometry x="70" y="120" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user-text" value="User Login" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="170" width="80" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="spring-auth" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#6DB33F;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.spring_boot;" vertex="1" parent="1">
+          <mxGeometry x="230" y="120" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="spring-text" value="Spring Boot\nAuth Service\n/auth/login" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="170" width="100" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-users" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" vertex="1" parent="1">
+          <mxGeometry x="370" y="120" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-text" value="RDS\nUsers Table\nCredentials" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="170" width="80" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt-gen" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#FF6B35;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.jwt;" vertex="1" parent="1">
+          <mxGeometry x="530" y="120" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt-text" value="JWT Generation\nRS256 Signing\nClaims + Expiry" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="170" width="100" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api-flow-title" value="2. API Request Flow (Product/Cart APIs)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="220" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="angular-app" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#E53E3E;strokeColor=none;fontFamily=Helvetica;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;outlineConnect=0;shape=mxgraph.veeam2.angular;" vertex="1" parent="1">
+          <mxGeometry x="70" y="260" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="angular-text" value="Angular SPA\nHTTP Client\nJWT Header" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="310" width="80" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api-gateway" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#FF4F8B;gradientDirection=north;fillColor=#BC1356;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="220" y="260" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="apigw-text" value="API Gateway\n/products\n/cart" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="310" width="80" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lambda-authorizer" value="Lambda Authorizer\nJWT Validation\nIAM Policy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="alb-routing" value="Application LB\nTarget Groups\nHealth Checks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ecs-apis" value="ECS Services\nSpring Boot APIs\nProduct/Cart Logic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-data" value="RDS PostgreSQL\nProducts Table\nCart_Items Table" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="260" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="order-flow-title" value="3. Order Placement Flow (Serverless)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="360" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="checkout-ui" value="Checkout Page\nPlace Order\nButton Click" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="order-lambda" value="Order Lambda\nPOST /checkout\n/place-order" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-write" value="DynamoDB\nOrders Table\nWrite Order" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdf-gen" value="PDF Generation\nInvoice Creation\nPDFKit Library" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3-upload" value="S3 Upload\nInvoice Storage\n/invoices/{orderId}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sqs-publish" value="SQS Message\nOrder Processing\nQueue Publish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="400" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="async-flow-title" value="4. Asynchronous Order Processing" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="500" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sqs-queue" value="SQS Queue\nOrder Messages\nVisibility Timeout" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ecs-processor" value="ECS Processor\nJava Service\nSQS Consumer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-order-items" value="RDS Write\nOrder_Items Table\nTransaction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-status" value="DynamoDB Update\nOrder Status\nCREATED to PROCESSED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eventbridge-pub" value="EventBridge\nOrder Processed\nEvent Publish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="540" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="shipping-flow-title" value="5. Event-Driven Shipping Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="640" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="event-bus" value="EventBridge Bus\nOrder Events\nEvent Patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="us-shipping" value="US Shipping\nLambda Function\nCountry: US" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eu-shipping" value="EU Shipping\nLambda Function\nCountry: EU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="india-shipping" value="India Shipping\nLambda Function\nCountry: IN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="shipment-status" value="DynamoDB Update\nShipment Status\nPROCESSED to SHIPPED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="680" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="status-flow-title" value="6. Order Status and UI Updates" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="780" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orders-page" value="Orders Page\nAngular Component\nStatus Display" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orders-api" value="Orders API\nECS Service\nGET /orders" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-read" value="DynamoDB Read\nOrder Status\nShipment Status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="invoice-download" value="Invoice Download\nS3 Pre-signed URL\nSecure Access" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="820" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="data-models-title" value="7. Data Models and Schema Design" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="80" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rds-schema" value="RDS PostgreSQL Schema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="120" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="users-table" value="users\nid (PK)\nemail\npassword_hash\ncreated_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="160" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="products-table" value="products\nid (PK)\nname\nprice\ndescription\nimage_url" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="160" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cart-table" value="cart_items\nid (PK)\nuser_id (FK)\nproduct_id (FK)\nquantity\ncreated_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="260" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="order-items-table" value="order_items\nid (PK)\norder_id\nproduct_id (FK)\nquantity\nprice" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="260" width="90" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dynamo-schema" value="DynamoDB Schema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="380" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orders-dynamo" value="Orders Table\nPK: orderId\nSK: userId\nstatus\ncountry\ntotal_amount\ncreated_at\nupdated_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="420" width="120" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="shipments-dynamo" value="Shipments (GSI)\nPK: orderId\nSK: shipmentId\nstatus\ntracking_number\ncarrier\nestimated_delivery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="420" width="120" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3-schema" value="S3 Bucket Structure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="580" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3-structure" value="order-invoices-bucket/\ninvoices/\n  2024/01/\n    order-123.pdf\n  2024/02/\nproduct-images/\nbackups/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;fontFamily=Courier New;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="620" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="security-title" value="8. Security and Configuration" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="80" width="350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt-flow" value="JWT Flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="120" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt-details" value="Algorithm: RS256\nClaims: userId, email, roles\nExpiry: 24 hours\nRefresh: 7 days\nPublic Key Validation\nJWKS Endpoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="160" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam-roles" value="IAM Roles and Policies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="280" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam-details" value="Lambda Execution Role\nECS Task Role\nECS Execution Role\nAPI Gateway Role\nLeast Privilege Access\nResource-based Policies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="320" width="200" height="100" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
