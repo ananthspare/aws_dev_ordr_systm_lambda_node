@@ -65,6 +65,9 @@ public class OrderItemDto {
 
         @Min(value = 1, message = "Quantity must be at least 1")
         private Integer quantity;
+
+        @DecimalMin(value = "0.0", inclusive = false, message = "Unit price must be greater than 0")
+        private BigDecimal unitPrice;
     }
 
     // Update request DTO

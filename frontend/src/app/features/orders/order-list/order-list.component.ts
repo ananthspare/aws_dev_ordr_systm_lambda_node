@@ -87,6 +87,17 @@ import { Order } from '../../../core/models/order.model';
                 <span>{{ order.countryCode }}</span>
               </div>
 
+              <div class="shipping-address" *ngIf="order.shippingAddress">
+                <span class="label">Shipping Address:</span>
+                <div class="address-details">
+                  <div>{{ order.shippingAddress.fullName }}</div>
+                  <div>{{ order.shippingAddress.addressLine1 }}</div>
+                  <div *ngIf="order.shippingAddress.addressLine2">{{ order.shippingAddress.addressLine2 }}</div>
+                  <div>{{ order.shippingAddress.city }}, {{ order.shippingAddress.state }} {{ order.shippingAddress.postalCode }}</div>
+                  <div>{{ order.shippingAddress.countryCode }}</div>
+                </div>
+              </div>
+
               <div class="info-row" *ngIf="order.invoiceS3Path">
                 <span class="label">Invoice:</span>
                 <button mat-button color="primary" (click)="downloadInvoice(order)">
@@ -265,6 +276,20 @@ import { Order } from '../../../core/models/order.model';
     .item-total {
       font-weight: 600;
       color: #2e7d32;
+    }
+
+    .shipping-address {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .address-details {
+      background: #f9f9f9;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      line-height: 1.4;
     }
 
     mat-card-actions {

@@ -3,10 +3,12 @@ package com.ecommerce.service;
 import com.ecommerce.dto.OrderDto;
 import com.ecommerce.dto.OrderItemDto;
 import com.ecommerce.dto.PaymentDto;
+import com.ecommerce.dto.ShippingAddressDto;
 import com.ecommerce.entity.Customer;
 import com.ecommerce.entity.Order;
 import com.ecommerce.entity.OrderItem;
 import com.ecommerce.entity.Product;
+import com.ecommerce.entity.ShippingAddress;
 import com.ecommerce.enums.OrderStatus;
 import com.ecommerce.enums.PaymentStatus;
 import com.ecommerce.exception.ResourceNotFoundException;
@@ -37,6 +39,9 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final ProductService productService;
     private final PaymentService paymentService;
+    private final SqsService sqsService;
+    private final CartService cartService;
+    private final ShippingAddressService shippingAddressService;
 
     /**
      * Checkout - Create order and process payment in single transaction
@@ -47,6 +52,12 @@ public class OrderService {
                 traceId, request.getCustomerId(), request.getOrderItems().size());
 
         try {
+            // Validate shipping address
+            ShippingAddress shippingAddress = shippingAddressService.getShippingAddressEntityById(request.getShippingAddressId());
+            if (!shippingAddress.getCustomer().getCustomerId().equals(request.getCustomerId())) {
+                throw new IllegalArgumentException("Shipping address does not belong to customer");
+            }
+
             // Create order
             OrderDto.CreateRequest orderRequest = OrderDto.CreateRequest.builder()
                     .customerId(request.getCustomerId())
@@ -54,7 +65,7 @@ public class OrderService {
                     .orderItems(request.getOrderItems())
                     .build();
 
-            OrderDto.Response order = createOrder(orderRequest);
+            OrderDto.Response order = createOrderWithShippingAddress(orderRequest, shippingAddress);
             log.info("[{}] SERVICE: Order created successfully - ID: {}, Total: ${}", 
                     traceId, order.getOrderId(), order.getTotalAmount());
 
@@ -83,6 +94,26 @@ public class OrderService {
             log.info("[{}] SERVICE: Checkout completed successfully - Order: {}, Payment: {}", 
                     traceId, order.getOrderId(), payment.getPaymentId());
 
+            // Send message to SQS for order processing
+            try {
+                sqsService.sendOrderProcessingMessage(order);
+                log.info("[{}] SERVICE: Order processing message sent to SQS for order ID: {}", traceId, order.getOrderId());
+            } catch (Exception e) {
+                log.error("[{}] SERVICE: Failed to send SQS message for order ID: {} - Error: {}", 
+                        traceId, order.getOrderId(), e.getMessage(), e);
+                // Don't fail the checkout if SQS message fails
+            }
+
+            // Clear customer's cart after successful order placement
+            try {
+                cartService.clearCart(order.getCustomerId());
+                log.info("[{}] SERVICE: Cart cleared for customer ID: {}", traceId, order.getCustomerId());
+            } catch (Exception e) {
+                log.error("[{}] SERVICE: Failed to clear cart for customer ID: {} - Error: {}", 
+                        traceId, order.getCustomerId(), e.getMessage(), e);
+                // Don't fail the checkout if cart clearing fails
+            }
+
             return OrderDto.CheckoutResponse.builder()
                     .order(order)
                     .payment(payment)
@@ -92,6 +123,65 @@ public class OrderService {
         } catch (Exception e) {
             log.error("[{}] SERVICE: Checkout failed for customer ID: {} - Error: {}", 
                     traceId, request.getCustomerId(), e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    /**
+     * Create a new order with shipping address
+     */
+    private OrderDto.Response createOrderWithShippingAddress(OrderDto.CreateRequest request, ShippingAddress shippingAddress) {
+        String traceId = MDC.get("traceId");
+        log.info("[{}] SERVICE: Creating new order with shipping address for customer ID: {}", 
+                traceId, request.getCustomerId());
+
+        try {
+            // Validate customer exists
+            Customer customer = customerRepository.findById(request.getCustomerId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Customer not found with ID: " + request.getCustomerId()));
+
+            // Create order with shipping address
+            Order order = Order.builder()
+                    .customer(customer)
+                    .status(OrderStatus.CREATED)
+                    .countryCode(request.getCountryCode())
+                    .paymentStatus(PaymentStatus.PENDING)
+                    .shippingAddress(shippingAddress)
+                    .orderItems(new ArrayList<>())
+                    .build();
+
+            // Process order items (same as createOrder)
+            BigDecimal totalAmount = BigDecimal.ZERO;
+            for (OrderItemDto.CreateRequest itemRequest : request.getOrderItems()) {
+                Product product = productRepository.findById(itemRequest.getProductId())
+                        .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + itemRequest.getProductId()));
+                
+                if (!product.hasStock(itemRequest.getQuantity())) {
+                    throw new IllegalArgumentException("Insufficient stock for product: " + product.getName());
+                }
+
+                OrderItem orderItem = OrderItem.builder()
+                        .order(order)
+                        .product(product)
+                        .quantity(itemRequest.getQuantity())
+                        .unitPrice(itemRequest.getUnitPrice() != null ? itemRequest.getUnitPrice() : product.getPrice())
+                        .build();
+
+                order.addOrderItem(orderItem);
+                totalAmount = totalAmount.add(orderItem.getTotalPrice());
+                productService.reduceStock(product.getProductId(), itemRequest.getQuantity());
+            }
+
+            order.setTotalAmount(totalAmount);
+            Order savedOrder = orderRepository.save(order);
+            
+            log.info("[{}] SERVICE: Order with shipping address created successfully - ID: {}", 
+                    traceId, savedOrder.getOrderId());
+
+            return mapToResponse(savedOrder);
+        } catch (Exception e) {
+            log.error("[{}] SERVICE: Failed to create order with shipping address - Error: {}", 
+                    traceId, e.getMessage(), e);
             throw e;
         }
     }
@@ -159,7 +249,7 @@ public class OrderService {
                         .order(order)
                         .product(product)
                         .quantity(itemRequest.getQuantity())
-                        .unitPrice(product.getPrice())
+                        .unitPrice(itemRequest.getUnitPrice() != null ? itemRequest.getUnitPrice() : product.getPrice())
                         .build();
 
                 order.addOrderItem(orderItem);
@@ -480,6 +570,8 @@ public class OrderService {
                 .orderItems(order.getOrderItems().stream()
                         .map(this::mapOrderItemToResponse)
                         .toList())
+                .shippingAddress(order.getShippingAddress() != null ? 
+                        mapShippingAddressToResponse(order.getShippingAddress()) : null)
                 .build();
     }
 
@@ -496,6 +588,27 @@ public class OrderService {
                 .quantity(orderItem.getQuantity())
                 .unitPrice(orderItem.getUnitPrice())
                 .totalPrice(orderItem.getTotalPrice())
+                .build();
+    }
+
+    /**
+     * Map ShippingAddress entity to Response DTO
+     */
+    private ShippingAddressDto.Response mapShippingAddressToResponse(ShippingAddress shippingAddress) {
+        return ShippingAddressDto.Response.builder()
+                .shippingAddressId(shippingAddress.getShippingAddressId())
+                .customerId(shippingAddress.getCustomer().getCustomerId())
+                .fullName(shippingAddress.getFullName())
+                .addressLine1(shippingAddress.getAddressLine1())
+                .addressLine2(shippingAddress.getAddressLine2())
+                .city(shippingAddress.getCity())
+                .state(shippingAddress.getState())
+                .postalCode(shippingAddress.getPostalCode())
+                .countryCode(shippingAddress.getCountryCode())
+                .phoneNumber(shippingAddress.getPhoneNumber())
+                .isDefault(shippingAddress.getIsDefault())
+                .createdAt(shippingAddress.getCreatedAt())
+                .updatedAt(shippingAddress.getUpdatedAt())
                 .build();
     }
 }

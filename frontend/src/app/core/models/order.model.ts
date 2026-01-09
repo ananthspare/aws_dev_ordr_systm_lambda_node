@@ -12,6 +12,23 @@ export interface Order {
   totalItems: number;
   orderItems: OrderItem[];
   items: OrderItem[]; // Alias for orderItems for component compatibility
+  shippingAddress?: ShippingAddress;
+}
+
+export interface ShippingAddress {
+  shippingAddressId: number;
+  customerId: number;
+  fullName: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  countryCode: string;
+  phoneNumber?: string;
+  isDefault?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface OrderItem {

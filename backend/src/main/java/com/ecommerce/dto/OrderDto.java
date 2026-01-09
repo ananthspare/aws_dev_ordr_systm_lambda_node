@@ -45,6 +45,7 @@ public class OrderDto {
     private CustomerDto.Response customer;
     private List<OrderItemDto.Response> orderItems;
     private PaymentDto.Response payment;
+    private ShippingAddressDto.Response shippingAddress;
 
     // Response DTO
     @Data
@@ -66,6 +67,7 @@ public class OrderDto {
         private Integer totalItems;
         private List<OrderItemDto.Response> orderItems;
         private PaymentDto.Response payment;
+        private ShippingAddressDto.Response shippingAddress;
     }
 
     // Create request DTO
@@ -176,6 +178,9 @@ public class OrderDto {
         @NotBlank(message = "Currency is required")
         @Size(min = 3, max = 3, message = "Currency must be exactly 3 characters")
         private String currency;
+
+        @NotNull(message = "Shipping address ID is required")
+        private Long shippingAddressId;
     }
 
     // Checkout response DTO

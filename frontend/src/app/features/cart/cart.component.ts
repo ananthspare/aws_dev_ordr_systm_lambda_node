@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -417,6 +417,7 @@ export class CartComponent implements OnInit {
   private authService = inject(AuthService);
   private snackBar = inject(MatSnackBar);
   private imagePlaceholderService = inject(ImagePlaceholderService);
+  private router = inject(Router);
 
   cart: Cart | null = null;
   isLoading = true;
@@ -511,40 +512,8 @@ export class CartComponent implements OnInit {
       return;
     }
 
-    this.isCheckingOut = true;
-    
-    // Get current user from auth service
-    const currentUser = this.authService.getCurrentUser();
-    if (!currentUser) {
-      this.isCheckingOut = false;
-      this.snackBar.open('Please login to checkout', 'Close', { duration: 3000 });
-      return;
-    }
-
-    // Prepare checkout request
-    const checkoutRequest = {
-      customerId: currentUser.customerId,
-      countryCode: 'US', // Default to US, could be made configurable
-      orderItems: this.cart.items.map(item => ({
-        productId: item.productId,
-        quantity: item.quantity
-      })),
-      paymentMethod: 'MOCK',
-      currency: 'USD'
-    };
-
-    this.checkoutService.checkout(checkoutRequest).subscribe({
-      next: (response) => {
-        this.isCheckingOut = false;
-        this.snackBar.open(response.message, 'Close', { duration: 5000 });
-        this.loadCart(); // Reload cart (should be empty after checkout)
-      },
-      error: (error: any) => {
-        this.isCheckingOut = false;
-        const message = error.error?.message || 'Checkout failed';
-        this.snackBar.open(message, 'Close', { duration: 3000 });
-      }
-    });
+    // Navigate to shipping address page
+    this.router.navigate(['/checkout/shipping']);
   }
 
   getTax(): number {

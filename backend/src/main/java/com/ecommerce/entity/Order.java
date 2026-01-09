@@ -51,6 +51,10 @@ public class Order {
     @Column(name = "country_code", nullable = false, length = 2)
     private String countryCode;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shipping_address_id", foreignKey = @ForeignKey(name = "fk_orders_shipping_address"))
+    private ShippingAddress shippingAddress;
+
     @DecimalMin(value = "0.0", inclusive = false, message = "Total amount must be greater than 0")
     @Column(name = "total_amount", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalAmount;

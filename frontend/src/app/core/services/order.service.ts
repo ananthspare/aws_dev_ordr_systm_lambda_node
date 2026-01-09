@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Order, OrderCreateRequest, OrderStatus, PaymentStatus } from '../models/order.model';
 import { PagedResponse } from '../models/api-response.model';
 import { environment } from '../../../environments/environment';
@@ -36,13 +37,12 @@ export class OrderService {
     return this.http.get<PagedResponse<Order>>(`${this.apiUrl}/customer/${customerId}`, { params });
   }
 
-  // Alias for getCustomerOrders to match component usage
+  // Get orders for the currently authenticated customer
   getCustomerOrders(): Observable<Order[]> {
-    return new Observable(observer => {
-      // For now, return empty array. In real implementation, get current user ID
-      observer.next([]);
-      observer.complete();
-    });
+    return this.http.get<PagedResponse<Order>>(`${this.apiUrl}/my-orders`)
+      .pipe(
+        map(response => response.content || [])
+      );
   }
 
   getOrdersByStatus(status: OrderStatus, page: number = 0, size: number = 20): Observable<PagedResponse<Order>> {
@@ -77,5 +77,9 @@ export class OrderService {
       .set('size', size.toString());
 
     return this.http.get<PagedResponse<Order>>(`${this.apiUrl}/search`, { params });
+  }
+
+  checkout(checkoutRequest: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/checkout`, checkoutRequest);
   }
 }

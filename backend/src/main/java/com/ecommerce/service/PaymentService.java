@@ -55,14 +55,8 @@ public class PaymentService {
                 .transactionRef(request.getTransactionRef())
                 .build();
 
-        // For MOCK payment method, automatically mark as PAID
-        if (request.getPaymentMethod() == PaymentMethod.MOCK) {
-            payment.setStatus(PaymentStatus.PAID);
-            payment.setTransactionRef(generateMockTransactionRef());
-        }
-
         Payment savedPayment = paymentRepository.save(payment);
-        log.info("Payment created successfully with ID: {}", savedPayment.getPaymentId());
+        log.info("Payment created successfully with ID: {} and status: PENDING", savedPayment.getPaymentId());
 
         return mapToResponse(savedPayment);
     }

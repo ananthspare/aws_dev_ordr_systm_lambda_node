@@ -20,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -148,6 +149,27 @@ public class OrderController {
             @Parameter(description = "Sort direction") @RequestParam(defaultValue = "desc") String sortDir) {
         
         log.info("Fetching orders for customer ID: {}", customerId);
+        
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDir), sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+        
+        Page<OrderDto.Response> response = orderService.getOrdersByCustomerId(customerId, pageable);
+        return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "Get my orders", description = "Retrieves orders for the currently authenticated customer")
+    @GetMapping("/my-orders")
+    public ResponseEntity<Page<OrderDto.Response>> getMyOrders(
+            @Parameter(description = "Page number (0-based)") @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Page size") @RequestParam(defaultValue = "20") int size,
+            @Parameter(description = "Sort by field") @RequestParam(defaultValue = "createdAt") String sortBy,
+            @Parameter(description = "Sort direction") @RequestParam(defaultValue = "desc") String sortDir) {
+        
+        // Get customer ID from security context
+        String customerIdStr = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long customerId = Long.parseLong(customerIdStr);
+        
+        log.info("Fetching orders for authenticated customer ID: {}", customerId);
         
         Sort sort = Sort.by(Sort.Direction.fromString(sortDir), sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);

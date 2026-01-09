@@ -46,6 +46,8 @@ aws:
   profile: ${AWS_PROFILE:default}
   secrets:
     db-secret-name: ${DB_SECRET_NAME:ecommerce-db-credentials}
+  sqs:
+    order-processing-queue-url: ${ORDER_PROCESSING_QUEUE_URL:https://sqs.us-east-1.amazonaws.com/411993131705/order-processing-queue}
 
 ---
 spring:
