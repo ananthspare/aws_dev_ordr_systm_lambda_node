@@ -37,17 +37,17 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authz -> authz
-                // Public endpoints
+                // Public endpoints - support both with and without context-path
                 .requestMatchers("/").permitAll()
-                .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/api/v1/customers/exists/**").permitAll()
-                .requestMatchers("/api/v1/products/**").permitAll()
-                .requestMatchers("/api/v1/test/public").permitAll()
+                .requestMatchers("/auth/**", "/api/v1/auth/**").permitAll()
+                .requestMatchers("/customers/exists/**", "/api/v1/customers/exists/**").permitAll()
+                .requestMatchers("/products/**", "/api/v1/products/**").permitAll()
+                .requestMatchers("/test/public", "/api/v1/test/public").permitAll()
                 .requestMatchers("/actuator/health").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 // Cart endpoints require authentication
-                .requestMatchers("/api/v1/cart/**").authenticated()
-                .requestMatchers("/api/v1/test/auth").authenticated()
+                .requestMatchers("/cart/**", "/api/v1/cart/**").authenticated()
+                .requestMatchers("/test/auth", "/api/v1/test/auth").authenticated()
                 // All other endpoints require authentication
                 .anyRequest().authenticated()
             )

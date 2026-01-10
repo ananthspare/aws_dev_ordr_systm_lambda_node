@@ -98,6 +98,7 @@ import { CheckoutService } from '../../../core/services/checkout.service';
                   <mat-option value="US">United States</mat-option>
                   <mat-option value="CA">Canada</mat-option>
                   <mat-option value="GB">United Kingdom</mat-option>
+                  <mat-option value="GB">India</mat-option>
                 </mat-select>
                 <mat-error *ngIf="shippingForm.get('countryCode')?.hasError('required')">
                   Country is required
