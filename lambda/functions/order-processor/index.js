@@ -1,96 +1,77 @@
+const mysql = require('mysql2/promise');
 const AWS = require('aws-sdk');
 
-// Initialize AWS services
-const dynamodb = new AWS.DynamoDB.DocumentClient();
-const eventbridge = new AWS.EventBridge();
+const secretsManager = new AWS.SecretsManager({ region: process.env.AWS_REGION || 'us-east-1' });
+let connection;
+let dbConfig;
 
-exports.handler = async (event) => {
-    console.log('Order processor Lambda triggered with event:', JSON.stringify(event, null, 2));
+async function getDbConfig() {
+    if (dbConfig) return dbConfig;
     
-    const results = [];
+    const secretName = process.env.DB_SECRET_NAME || 'ecommerce-db-credentials';
+    const secret = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
+    const secretData = JSON.parse(secret.SecretString);
     
-    // Process each SQS record
-    for (const record of event.Records) {
-        try {
-            const messageBody = JSON.parse(record.body);
-            console.log('Processing order message:', messageBody);
-            
-            const result = await processOrder(messageBody);
-            results.push({
-                messageId: record.messageId,
-                status: 'SUCCESS',
-                result: result
-            });
-            
-        } catch (error) {
-            console.error('Error processing message:', record.messageId, error);
-            results.push({
-                messageId: record.messageId,
-                status: 'ERROR',
-                error: error.message
-            });
-        }
-    }
-    
-    return {
-        statusCode: 200,
-        body: JSON.stringify({
-            message: 'Order processing completed',
-            results: results
-        })
+    dbConfig = {
+        host: secretData.host,
+        user: secretData.username,
+        password: secretData.password,
+        database: secretData.database,
+        port: secretData.port || 3306
     };
-};
-
-async function processOrder(orderMessage) {
-    const { orderId, customerId, countryCode, eventType } = orderMessage;
     
-    console.log(`Processing order ${orderId} for customer ${customerId} in country ${countryCode}`);
-    
-    // TODO: Implement order processing logic
-    // This is where you would:
-    // 1. Update order status in DynamoDB
-    // 2. Generate invoice
-    // 3. Send notifications
-    // 4. Trigger shipping workflows via EventBridge
-    
-    // For now, just log the processing
-    console.log(`Order ${orderId} processed successfully`);
-    
-    // Example: Send event to EventBridge for further processing
-    await sendOrderProcessedEvent(orderId, customerId, countryCode);
-    
-    return {
-        orderId: orderId,
-        status: 'PROCESSED',
-        timestamp: new Date().toISOString()
-    };
+    return dbConfig;
 }
 
-async function sendOrderProcessedEvent(orderId, customerId, countryCode) {
-    const eventDetail = {
-        orderId: orderId,
-        customerId: customerId,
-        countryCode: countryCode,
-        status: 'PROCESSED',
-        timestamp: new Date().toISOString()
-    };
-    
-    const params = {
-        Entries: [
-            {
-                Source: 'ecommerce.order-processor',
-                DetailType: 'Order Processed',
-                Detail: JSON.stringify(eventDetail),
-                EventBusName: 'default' // or your custom event bus
-            }
-        ]
-    };
+exports.handler = async (event) => {
+    console.log('Processing SQS messages:', JSON.stringify(event, null, 2));
     
     try {
-        const result = await eventbridge.putEvents(params).promise();
-        console.log('Event sent to EventBridge:', result);
+        // Get DB config from Secrets Manager
+        const config = await getDbConfig();
+        
+        // Create connection if not exists
+        if (!connection) {
+            connection = await mysql.createConnection(config);
+        }
+        
+        for (const record of event.Records) {
+            try {
+                const orderData = JSON.parse(record.body);
+                console.log('Processing order:', orderData.orderId);
+                
+                // Update order status to PROCESSING
+                await updateOrderStatus(orderData.orderId, 'PROCESSING');
+                
+                // Update payment status to PAID
+                await updatePaymentStatus(orderData.orderId, 'PAID');
+                
+                console.log(`Successfully processed order ${orderData.orderId}`);
+                
+            } catch (error) {
+                console.error('Error processing message:', error);
+                throw error;
+            }
+        }
+        
+        return { statusCode: 200, body: 'Orders processed successfully' };
+        
     } catch (error) {
-        console.error('Failed to send event to EventBridge:', error);
+        console.error('Database connection error:', error);
         throw error;
     }
+};
+
+async function updateOrderStatus(orderId, status) {
+    const sql = 'UPDATE orders SET status = ?, payment_status = "PAID", updated_at = NOW() WHERE order_id = ?';
+    
+    await connection.execute(sql, [status, orderId]);
+    console.log(`Order ${orderId} status updated to ${status} and payment_status to PAID`);
+}
+
+async function updatePaymentStatus(orderId, status) {
+    const sql = 'UPDATE payments SET status = ?, updated_at = NOW() WHERE order_id = ?';
+    
+    await connection.execute(sql, [status, orderId]);
+    console.log(`Payment for order ${orderId} status updated to ${status}`);
 }
